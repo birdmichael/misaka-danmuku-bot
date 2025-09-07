@@ -45,7 +45,7 @@ services:
       - BGM_ACCESS_TOKEN=your_bgm_access_token_here
 
       # 其他可选配置
-      - API_TIMEOUT=60
+      - API_TIMEOUT=120
       - LOG_LEVEL=INFO
 ```
 
@@ -70,7 +70,7 @@ docker-compose up -d
 - `HTTP_PROXY`: HTTP 代理地址
 - `HTTPS_PROXY`: HTTPS 代理地址
 - `NO_PROXY`: 不使用代理的地址列表
-- `API_TIMEOUT`: API 请求超时时间（秒，默认 60）
+- `API_TIMEOUT`: API 请求超时时间（秒，默认 120，可根据网络情况调整）
 - `LOG_LEVEL`: 日志级别（INFO/DEBUG/WARNING/ERROR，默认 INFO）
 - `TMDB_API_KEY`: TMDB API 密钥（用于智能搜索辅助，从 https://www.themoviedb.org/settings/api 获取）
 - `TVDB_API_KEY`: TVDB API 密钥（用于TVDB链接解析和媒体信息获取，从 https://thetvdb.com/api-information 获取）

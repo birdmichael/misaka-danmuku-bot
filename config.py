@@ -300,7 +300,7 @@ class ConfigManager:
             self._danmaku_api = DanmakuAPIConfig(
                 base_url=os.getenv("DANMAKU_API_BASE_URL", ""),
                 api_key=os.getenv("DANMAKU_API_KEY", ""),
-                timeout=int(os.getenv("API_TIMEOUT", 60))
+                timeout=int(os.getenv("API_TIMEOUT", 120))
             )
             
             # 加载TMDB配置
@@ -326,7 +326,7 @@ class ConfigManager:
                 log_level=os.getenv("LOG_LEVEL", "INFO"),
                 debug=os.getenv("DEBUG", "false").lower() in ['true', '1', 'yes'],
                 environment=os.getenv("ENVIRONMENT", "production"),
-                api_timeout=int(os.getenv("API_TIMEOUT", 60))
+                api_timeout=int(os.getenv("API_TIMEOUT", 120))
             )
             
             logger.info("✅ 配置加载成功")
