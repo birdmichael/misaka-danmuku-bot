@@ -233,6 +233,9 @@ async def _setup_bot_commands(application: Application):
         BotCommand("url", "为已存在的数据源导入指定集数"),
         BotCommand("refresh", "刷新数据源"),
         BotCommand("tokens", "管理API令牌"),
+        BotCommand("adduser", "添加用户"),
+        BotCommand("deleteuser", "删除用户"),
+        BotCommand("listuser", "列出用户"),
         BotCommand("help", "查看帮助信息"),
         BotCommand("cancel", "取消当前操作")
     ]
@@ -473,7 +476,14 @@ def _setup_handlers(application, handlers_module, callback_module):
     token_management_handler = create_token_management_handler()
     application.add_handler(token_management_handler)
     current_handlers["token_management_handler"] = token_management_handler
-    
+
+    # 导入并注册用户管理处理器
+    from handlers.user_management import create_user_management_handlers
+    user_management_handlers = create_user_management_handlers()
+    for name, handler in user_management_handlers:
+        application.add_handler(handler)
+        current_handlers[name] = handler
+
     # 导入并注册refresh处理器
     from handlers.refresh_sources import create_refresh_handler
     refresh_handler = create_refresh_handler()
