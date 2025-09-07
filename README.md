@@ -112,6 +112,7 @@ python bot.py
 - ✅ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
 - ✅ 查询全局配额 (`/quota`，需控制 Token)
+- ✅ 查询任务状态 (`/tasks`)
 
 ### 普通用户权限
 普通用户（在 `ALLOWED_USER_IDS` 中配置但不在 `ADMIN_USER_IDS` 中）仅有基础功能权限：
@@ -123,6 +124,7 @@ python bot.py
 - ❌ Token管理 (`/tokens`) - 需要管理员权限
 - ❌ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`) - 需要管理员权限
 - ❌ 查询全局配额 (`/quota`) - 需要管理员权限
+- ✅ 查询任务状态 (`/tasks`)
 
 > 💡 **提示**: 普通用户可以看到所有功能选项，但点击管理员专用功能时会收到权限不足的提示。
 
@@ -138,6 +140,7 @@ python bot.py
 - 🎭 豆瓣链接解析支持（自动识别豆瓣链接并获取媒体信息）
 - 🌟 IMDB链接解析支持（自动识别IMDB链接并获取媒体信息）
 - 🎯 Bangumi(BGM)链接解析支持（自动识别BGM链接并获取媒体信息，支持API和爬虫双模式）
+- 📋 任务状态查询（`/tasks`，支持按状态过滤：all/in_progress/completed）
 - 🌐 代理支持
 - 📊 详细日志记录
 - 🔥 热重载开发支持
