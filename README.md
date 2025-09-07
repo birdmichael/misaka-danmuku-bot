@@ -45,7 +45,7 @@ services:
       - BGM_ACCESS_TOKEN=your_bgm_access_token_here
 
       # 其他可选配置
-      - API_TIMEOUT=60
+      - API_TIMEOUT=120
       - LOG_LEVEL=INFO
 ```
 
@@ -70,7 +70,7 @@ docker-compose up -d
 - `HTTP_PROXY`: HTTP 代理地址
 - `HTTPS_PROXY`: HTTPS 代理地址
 - `NO_PROXY`: 不使用代理的地址列表
-- `API_TIMEOUT`: API 请求超时时间（秒，默认 60）
+- `API_TIMEOUT`: API 请求超时时间（秒，默认 120，可根据网络情况调整）
 - `LOG_LEVEL`: 日志级别（INFO/DEBUG/WARNING/ERROR，默认 INFO）
 - `TMDB_API_KEY`: TMDB API 密钥（用于智能搜索辅助，从 https://www.themoviedb.org/settings/api 获取）
 - `TVDB_API_KEY`: TVDB API 密钥（用于TVDB链接解析和媒体信息获取，从 https://thetvdb.com/api-information 获取）
@@ -111,6 +111,7 @@ python bot.py
 - ✅ Token管理 (`/tokens`)
 - ✅ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
+- ✅ 查询全局配额 (`/quota`，需控制 Token)
 
 ### 普通用户权限
 普通用户（在 `ALLOWED_USER_IDS` 中配置但不在 `ADMIN_USER_IDS` 中）仅有基础功能权限：
@@ -121,6 +122,7 @@ python bot.py
 - ❌ 刷新数据源 (`/refresh`) - 需要管理员权限
 - ❌ Token管理 (`/tokens`) - 需要管理员权限
 - ❌ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`) - 需要管理员权限
+- ❌ 查询全局配额 (`/quota`) - 需要管理员权限
 
 > 💡 **提示**: 普通用户可以看到所有功能选项，但点击管理员专用功能时会收到权限不足的提示。
 
@@ -139,6 +141,7 @@ python bot.py
 - 🌐 代理支持
 - 📊 详细日志记录
 - 🔥 热重载开发支持
+- 🔢 全局配额查询
 
 ## 许可证
 

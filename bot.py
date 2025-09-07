@@ -233,6 +233,7 @@ async def _setup_bot_commands(application: Application):
         BotCommand("url", "为已存在的数据源导入指定集数"),
         BotCommand("refresh", "刷新数据源"),
         BotCommand("tokens", "管理API令牌"),
+        BotCommand("quota", "查看全局配额"),
         BotCommand("adduser", "添加用户"),
         BotCommand("deleteuser", "删除用户"),
         BotCommand("listuser", "列出用户"),
@@ -483,6 +484,12 @@ def _setup_handlers(application, handlers_module, callback_module):
     for name, handler in user_management_handlers:
         application.add_handler(handler)
         current_handlers[name] = handler
+
+    # 导入并注册配额查询处理器
+    from handlers.quota import create_quota_handler
+    quota_handler = create_quota_handler()
+    application.add_handler(quota_handler)
+    current_handlers["quota_handler"] = quota_handler
 
     # 导入并注册refresh处理器
     from handlers.refresh_sources import create_refresh_handler
