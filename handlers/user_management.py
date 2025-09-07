@@ -1,27 +1,23 @@
-import os
+import json
 import logging
-from pathlib import Path
 from telegram import Update
 from telegram.ext import ContextTypes, CommandHandler
 from utils.permission import check_admin_permission
 from config import config
-from dotenv import set_key, find_dotenv
 
 logger = logging.getLogger(__name__)
 
 
 def _save_user_ids():
-    """Persist user ID lists to environment and .env file."""
-    env_path = find_dotenv()
-    if not env_path:
-        env_path = '.env'
-    env_path = Path(env_path)
-    allowed_str = ",".join(str(uid) for uid in config.telegram.allowed_user_ids)
-    admin_str = ",".join(str(uid) for uid in config.telegram.admin_user_ids)
-    set_key(str(env_path), "ALLOWED_USER_IDS", allowed_str)
-    set_key(str(env_path), "ADMIN_USER_IDS", admin_str)
-    os.environ["ALLOWED_USER_IDS"] = allowed_str
-    os.environ["ADMIN_USER_IDS"] = admin_str
+    """Persist user ID lists to JSON file."""
+    path = config.user_config_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = {
+        "allowed_user_ids": config.telegram.allowed_user_ids,
+        "admin_user_ids": config.telegram.admin_user_ids,
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f)
 
 
 @check_admin_permission

@@ -26,7 +26,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 /quota - 查询全局配额
 
 【📋 任务查询】
-/tasks [状态] - 查看任务列表（默认 all）
+/tasks [状态码] - 查看任务列表（0=all,1=in_progress,2=completed；默认0）
 
 【👥 用户管理】
 /addUser <用户ID> - 添加用户
@@ -58,7 +58,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 【📋 任务查询】
-/tasks [状态] - 查看任务列表（默认 all）
+/tasks [状态码] - 查看任务列表（0=all,1=in_progress,2=completed；默认0）
 
 【📊 配额查询】
 /quota - 查询全局配额
@@ -120,7 +120,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 • /quota - 查询剩余全局配额和总配额
 
 【📋 任务查询】
-• /tasks [状态] - 查看任务列表（默认 all）
+• /tasks [状态码] - 查看任务列表（0=all,1=in_progress,2=completed；默认0）
 
 【👥 用户管理】
 • /addUser <用户ID> - 添加用户
@@ -149,7 +149,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
   支持关键词搜索和多平台链接导入
 
 【📋 任务查询】
-• /tasks [状态] - 查看任务列表（默认 all）
+• /tasks [状态码] - 查看任务列表（0=all,1=in_progress,2=completed；默认0）
 
 【📊 配额查询】
 • /quota - 查询全局配额
