@@ -2,12 +2,10 @@ import logging
 from telegram import Update
 from telegram.ext import ContextTypes, CommandHandler
 from utils.api import call_danmaku_api
-from utils.permission import check_admin_permission
 from config import ConfigManager
 
 logger = logging.getLogger(__name__)
 
-@check_admin_permission
 async def check_quota(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """查询并显示全局配额信息"""
     try:

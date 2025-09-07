@@ -56,14 +56,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 /search [关键词] - 搜索媒体（如：/search 火影忍者）
 /auto - 自动导入媒体（支持关键词搜索和多平台链接导入）
 
+
 【📋 任务查询】
 /tasks [状态] - 查看任务列表（默认 all）
+
+【📊 配额查询】
+/quota - 查询全局配额
 
 【🔒 管理员功能】（需要管理员权限）
 /url - 为已存在的数据源导入指定集数
 /refresh - 刷新数据源
 /tokens - 管理API访问令牌
-/quota - 查询全局配额
 /addUser <用户ID> - 添加用户
 /deleteUser <用户ID> - 删除用户
 /listUser - 查看用户列表
@@ -148,6 +151,10 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【📋 任务查询】
 • /tasks [状态] - 查看任务列表（默认 all）
 
+【📊 配额查询】
+• /quota - 查询全局配额
+
+
 【🔒 管理员功能】（需要管理员权限）
 • /url - 为已存在的数据源导入指定集数
   适用于已有数据源但需要补充集数的情况
@@ -157,8 +164,6 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 • /tokens - 管理API访问令牌
   查看、创建、删除访问令牌
-
-• /quota - 查询全局配额
 
 • /addUser <用户ID> - 添加用户
 • /deleteUser <用户ID> - 删除用户
