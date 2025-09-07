@@ -8,13 +8,21 @@ logger = logging.getLogger(__name__)
 
 @check_user_permission
 async def list_tasks(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """查询任务列表，可按状态过滤"""
-    # 解析状态参数，默认 all
-    status = "all"
+    """查询任务列表，可按状态码过滤 (0=all,1=in_progress,2=completed)"""
+    # 解析状态参数，默认 0（全部）
+    status = "0"
     if context.args:
         arg = context.args[0].lower()
-        if arg in {"all", "in_progress", "completed"}:
-            status = arg
+        status_map = {
+            "0": "0",
+            "1": "1",
+            "2": "2",
+            "all": "0",
+            "in_progress": "1",
+            "completed": "2",
+        }
+        if arg in status_map:
+            status = status_map[arg]
     try:
         response = call_danmaku_api("GET", "/tasks", params={"status": status})
         if not response or not response.get("success"):

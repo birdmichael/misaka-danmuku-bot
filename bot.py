@@ -297,12 +297,17 @@ def _setup_handlers(application, handlers_module, callback_module):
 
         if message.entities:
             for entity in message.entities:
+                if entity.type == "bot_command":
+                    return
                 if entity.type == "mention":
                     mention = text[entity.offset: entity.offset + entity.length]
                     if mention.lower() == f"@{bot_username.lower()}":
                         return
                 elif entity.type == "text_mention" and entity.user and entity.user.id == context.bot.id:
                     return
+
+        if text.startswith("/"):
+            return
 
         if f"@{bot_username.lower()}" in text.lower():
             return

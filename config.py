@@ -1,5 +1,6 @@
 import os
 import logging
+import json
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 from dataclasses import dataclass, field
@@ -259,6 +260,7 @@ class ConfigManager:
         self._tvdb: Optional[TVDBConfig] = None
         self._proxy: Optional[ProxyConfig] = None
         self._app: Optional[AppConfig] = None
+        self._user_config_path: Path = Path(__file__).resolve().parent / "data" / "users.json"
         self._load_config()
     
     def _parse_user_ids(self, user_ids_str: str) -> List[int]:
@@ -281,10 +283,22 @@ class ConfigManager:
         try:
             # 加载Telegram配置
             telegram_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
-            user_ids_str = os.getenv("ALLOWED_USER_IDS", "")
-            user_ids = self._parse_user_ids(user_ids_str)
-            admin_ids_str = os.getenv("ADMIN_USER_IDS", "")
-            admin_ids = self._parse_user_ids(admin_ids_str)
+
+            if self._user_config_path.exists():
+                try:
+                    with open(self._user_config_path, "r", encoding="utf-8") as f:
+                        user_data = json.load(f)
+                    user_ids = [int(uid) for uid in user_data.get("allowed_user_ids", [])]
+                    admin_ids = [int(uid) for uid in user_data.get("admin_user_ids", [])]
+                except Exception as e:
+                    logger.warning(f"⚠️ 无法读取用户配置文件: {e}")
+                    user_ids = self._parse_user_ids(os.getenv("ALLOWED_USER_IDS", ""))
+                    admin_ids = self._parse_user_ids(os.getenv("ADMIN_USER_IDS", ""))
+            else:
+                user_ids_str = os.getenv("ALLOWED_USER_IDS", "")
+                user_ids = self._parse_user_ids(user_ids_str)
+                admin_ids_str = os.getenv("ADMIN_USER_IDS", "")
+                admin_ids = self._parse_user_ids(admin_ids_str)
             
             self._telegram = TelegramConfig(
                 bot_token=telegram_token,
@@ -389,7 +403,7 @@ class ConfigManager:
         load_dotenv(override=True)
         self._load_config()
         logger.info("🔄 配置已重新加载")
-    
+
     def get_config_summary(self) -> Dict[str, Any]:
         """获取配置摘要（隐藏敏感信息）"""
         return {
@@ -428,6 +442,11 @@ class ConfigManager:
                 "environment": self.app.environment
             }
         }
+
+    @property
+    def user_config_path(self) -> Path:
+        """返回用户配置文件路径"""
+        return self._user_config_path
 
 
 # 创建全局配置实例

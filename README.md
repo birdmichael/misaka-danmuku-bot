@@ -112,7 +112,7 @@ python bot.py
 - ✅ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
 - ✅ 查询全局配额 (`/quota`，需控制 Token)
-- ✅ 查询任务状态 (`/tasks`)
+- ✅ 查询任务状态 (`/tasks [状态码]`)
 
 
 ### 普通用户权限
@@ -121,7 +121,7 @@ python bot.py
 - ✅ 自动导入功能 (`/auto`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
 - ✅ 查询全局配额 (`/quota`)
-- ✅ 查询任务状态 (`/tasks`)
+- ✅ 查询任务状态 (`/tasks [状态码]`)
 - ❌ URL链接导入 (`/url`) - 需要管理员权限
 - ❌ 刷新数据源 (`/refresh`) - 需要管理员权限
 - ❌ Token管理 (`/tokens`) - 需要管理员权限
@@ -142,7 +142,7 @@ python bot.py
 - 🎭 豆瓣链接解析支持（自动识别豆瓣链接并获取媒体信息）
 - 🌟 IMDB链接解析支持（自动识别IMDB链接并获取媒体信息）
 - 🎯 Bangumi(BGM)链接解析支持（自动识别BGM链接并获取媒体信息，支持API和爬虫双模式）
-- 📋 任务状态查询（`/tasks`，支持按状态过滤：all/in_progress/completed）
+- 📋 任务状态查询（`/tasks`，支持按状态码过滤：0=all,1=in_progress,2=completed）
 - 🌐 代理支持
 - 📊 详细日志记录
 - 🔥 热重载开发支持
