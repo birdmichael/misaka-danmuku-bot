@@ -22,6 +22,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【🔑 Token管理】
 /tokens - 管理API访问令牌
 
+【📊 配额查询】
+/quota - 查询全局配额
+
 【👥 用户管理】
 /addUser <用户ID> - 添加用户
 /deleteUser <用户ID> - 删除用户
@@ -38,8 +41,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
             [KeyboardButton("/search"), KeyboardButton("/auto")],
             [KeyboardButton("/url"), KeyboardButton("/refresh")],
-            [KeyboardButton("/tokens"), KeyboardButton("/help")],
-            [KeyboardButton("/cancel")]
+            [KeyboardButton("/tokens"), KeyboardButton("/quota")],
+            [KeyboardButton("/help"), KeyboardButton("/cancel")]
         ]
     else:
         welcome_msg = """
@@ -54,6 +57,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 /url - 为已存在的数据源导入指定集数
 /refresh - 刷新数据源
 /tokens - 管理API访问令牌
+/quota - 查询全局配额
 /addUser <用户ID> - 添加用户
 /deleteUser <用户ID> - 删除用户
 /listUser - 查看用户列表
@@ -69,8 +73,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard = [
             [KeyboardButton("/search"), KeyboardButton("/auto")],
             [KeyboardButton("/url"), KeyboardButton("/refresh")],
-            [KeyboardButton("/tokens"), KeyboardButton("/help")],
-            [KeyboardButton("/cancel")]
+            [KeyboardButton("/tokens"), KeyboardButton("/quota")],
+            [KeyboardButton("/help"), KeyboardButton("/cancel")]
         ]
     
     # 移除自定义键盘，只保留命令菜单
@@ -102,6 +106,9 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【🔑 Token管理】
 • /tokens - 管理API访问令牌
   查看、创建、删除访问令牌
+
+【📊 配额查询】
+• /quota - 查询剩余全局配额和总配额
 
 【👥 用户管理】
 • /addUser <用户ID> - 添加用户
@@ -138,6 +145,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 • /tokens - 管理API访问令牌
   查看、创建、删除访问令牌
+
+• /quota - 查询全局配额
 
 • /addUser <用户ID> - 添加用户
 • /deleteUser <用户ID> - 删除用户
