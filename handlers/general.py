@@ -22,6 +22,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【🔑 Token管理】
 /tokens - 管理API访问令牌
 
+【👥 用户管理】
+/addUser <用户ID> - 添加用户
+/deleteUser <用户ID> - 删除用户
+/listUser - 查看用户列表
+
 【其他】
 /help  - 查看帮助信息
 /cancel - 取消当前操作
@@ -49,6 +54,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 /url - 为已存在的数据源导入指定集数
 /refresh - 刷新数据源
 /tokens - 管理API访问令牌
+/addUser <用户ID> - 添加用户
+/deleteUser <用户ID> - 删除用户
+/listUser - 查看用户列表
 
 【其他】
 /help  - 查看帮助信息
@@ -95,6 +103,11 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 • /tokens - 管理API访问令牌
   查看、创建、删除访问令牌
 
+【👥 用户管理】
+• /addUser <用户ID> - 添加用户
+• /deleteUser <用户ID> - 删除用户
+• /listUser - 查看用户列表
+
 【📋 其他指令】
 • /help - 显示此帮助信息
 • /cancel - 取消当前操作
@@ -125,6 +138,10 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 • /tokens - 管理API访问令牌
   查看、创建、删除访问令牌
+
+• /addUser <用户ID> - 添加用户
+• /deleteUser <用户ID> - 删除用户
+• /listUser - 查看用户列表
 
 【📋 其他指令】
 • /help - 显示此帮助信息

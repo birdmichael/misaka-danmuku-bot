@@ -109,6 +109,7 @@ python bot.py
 - ✅ URL链接导入 (`/url`)
 - ✅ 刷新数据源 (`/refresh`)
 - ✅ Token管理 (`/tokens`)
+- ✅ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
 
 ### 普通用户权限
@@ -119,6 +120,7 @@ python bot.py
 - ❌ URL链接导入 (`/url`) - 需要管理员权限
 - ❌ 刷新数据源 (`/refresh`) - 需要管理员权限
 - ❌ Token管理 (`/tokens`) - 需要管理员权限
+- ❌ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`) - 需要管理员权限
 
 > 💡 **提示**: 普通用户可以看到所有功能选项，但点击管理员专用功能时会收到权限不足的提示。
 
@@ -126,6 +128,7 @@ python bot.py
 
 - 🤖 Telegram 机器人集成
 - 🔐 用户权限管理（管理员/普通用户分级）
+- 📇 动态用户管理命令 (`/addUser`, `/deleteUser`, `/listUser`)
 - 🎯 媒体搜索和导入
 - 🔄 自动导入功能
 - 🧠 TMDB智能搜索辅助（自动识别电影/电视剧类型）
