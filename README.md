@@ -111,6 +111,7 @@ python bot.py
 - ✅ Token管理 (`/tokens`)
 - ✅ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`)
 - ✅ 帮助和取消操作 (`/help`, `/cancel`)
+- ✅ 查询全局配额 (`/quota`，需控制 Token)
 
 ### 普通用户权限
 普通用户（在 `ALLOWED_USER_IDS` 中配置但不在 `ADMIN_USER_IDS` 中）仅有基础功能权限：
@@ -121,6 +122,7 @@ python bot.py
 - ❌ 刷新数据源 (`/refresh`) - 需要管理员权限
 - ❌ Token管理 (`/tokens`) - 需要管理员权限
 - ❌ 用户管理 (`/addUser`, `/deleteUser`, `/listUser`) - 需要管理员权限
+- ❌ 查询全局配额 (`/quota`) - 需要管理员权限
 
 > 💡 **提示**: 普通用户可以看到所有功能选项，但点击管理员专用功能时会收到权限不足的提示。
 
@@ -139,6 +141,7 @@ python bot.py
 - 🌐 代理支持
 - 📊 详细日志记录
 - 🔥 热重载开发支持
+- 🔢 全局配额查询
 
 ## 许可证
 
