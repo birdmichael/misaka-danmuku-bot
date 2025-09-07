@@ -25,7 +25,8 @@ from telegram.ext import (
     filters,
     ContextTypes,
     ConversationHandler,
-    Application
+    Application,
+    ApplicationHandlerStop
 )
 
 # ------------------------------
@@ -279,9 +280,37 @@ def _setup_handlers(application, handlers_module, callback_module):
     handle_import_auto_callback = callback_module.handle_import_auto_callback
     handle_search_type_callback = callback_module.handle_search_type_callback
     handle_media_type_callback = callback_module.handle_media_type_callback
-    
+
     # 导入import_url处理器
     from handlers.import_url import create_import_url_handler
+
+    async def require_mention(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Ensure the bot is mentioned in group chats before processing."""
+        message = update.message
+        chat = update.effective_chat
+        if not message or not chat or chat.type not in ("group", "supergroup"):
+            return
+
+        bot_username = context.bot.username or ""
+        text = message.text or ""
+
+        if message.entities:
+            for entity in message.entities:
+                if entity.type == "mention":
+                    mention = text[entity.offset: entity.offset + entity.length]
+                    if mention.lower() == f"@{bot_username.lower()}":
+                        return
+                elif entity.type == "text_mention" and entity.user and entity.user.id == context.bot.id:
+                    return
+
+        if f"@{bot_username.lower()}" in text.lower():
+            return
+
+        raise ApplicationHandlerStop
+
+    mention_handler = MessageHandler(filters.ChatType.GROUPS, require_mention)
+    application.add_handler(mention_handler, group=0)
+    current_handlers["mention_handler"] = mention_handler
     
 
 
