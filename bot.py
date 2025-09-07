@@ -235,6 +235,7 @@ async def _setup_bot_commands(application: Application):
         BotCommand("refresh", "刷新数据源"),
         BotCommand("tokens", "管理API令牌"),
         BotCommand("quota", "查看全局配额"),
+        BotCommand("tasks", "查看任务列表"),
         BotCommand("adduser", "添加用户"),
         BotCommand("deleteuser", "删除用户"),
         BotCommand("listuser", "列出用户"),
@@ -519,6 +520,12 @@ def _setup_handlers(application, handlers_module, callback_module):
     quota_handler = create_quota_handler()
     application.add_handler(quota_handler)
     current_handlers["quota_handler"] = quota_handler
+
+    # 导入并注册任务查询处理器
+    from handlers.tasks import create_tasks_handler
+    tasks_handler = create_tasks_handler()
+    application.add_handler(tasks_handler)
+    current_handlers["tasks_handler"] = tasks_handler
 
     # 导入并注册refresh处理器
     from handlers.refresh_sources import create_refresh_handler

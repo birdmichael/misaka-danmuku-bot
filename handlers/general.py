@@ -25,6 +25,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【📊 配额查询】
 /quota - 查询全局配额
 
+【📋 任务查询】
+/tasks [状态] - 查看任务列表（默认 all）
+
 【👥 用户管理】
 /addUser <用户ID> - 添加用户
 /deleteUser <用户ID> - 删除用户
@@ -52,6 +55,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【📥 媒体搜索】
 /search [关键词] - 搜索媒体（如：/search 火影忍者）
 /auto - 自动导入媒体（支持关键词搜索和多平台链接导入）
+
+
+【📋 任务查询】
+/tasks [状态] - 查看任务列表（默认 all）
 
 【📊 配额查询】
 /quota - 查询全局配额
@@ -112,6 +119,9 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 【📊 配额查询】
 • /quota - 查询剩余全局配额和总配额
 
+【📋 任务查询】
+• /tasks [状态] - 查看任务列表（默认 all）
+
 【👥 用户管理】
 • /addUser <用户ID> - 添加用户
 • /deleteUser <用户ID> - 删除用户
@@ -128,7 +138,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 - 遇到问题可以重新发送 /start 重置状态
         """
     else:
-         help_text = """
+        help_text = """
 🤖 Misaka 弹幕系统机器人 - 用户帮助文档
 
 【📥 媒体搜索功能】
@@ -138,8 +148,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 • /auto - 自动导入媒体
   支持关键词搜索和多平台链接导入
 
+【📋 任务查询】
+• /tasks [状态] - 查看任务列表（默认 all）
+
 【📊 配额查询】
 • /quota - 查询全局配额
+
 
 【🔒 管理员功能】（需要管理员权限）
 • /url - 为已存在的数据源导入指定集数
